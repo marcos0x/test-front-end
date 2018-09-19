@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 import './styles/App.scss';
 
 import React from 'react';
