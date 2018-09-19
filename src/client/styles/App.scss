@@ -1,0 +1,96 @@
+@import './variables.scss';
+
+body {
+  margin: 0;
+  padding: 72px 0 0;
+  word-wrap: break-word;
+  background: color(gray4);
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 15px;
+}
+
+a, input[type="submit"], select, select:active, select:focus, button {
+	-moz-user-focus: 0 none !important;
+	-moz-outline: 0 none !important;
+	outline: 0 none !important;
+}
+
+a, a:hover, a:focus, a:active, a:visited {
+	text-decoration: none;
+}
+
+button::-moz-focus-inner {
+	outline: 0 none !important;
+}
+
+:focus, :active {
+	outline: 0 none !important;
+}
+
+::-moz-focus-inner {
+	border: 0;
+	outline: 0 none !important;
+}
+
+.main-content {
+  background: color(white);
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.loading {
+  background-image: url('/images/loading.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 50px;
+}
+
+.btn-primary-2 {
+  padding: 8px 16px;
+  color: color(white);
+  border-color: color(blue1);
+  background-color: color(blue1);
+
+  &:hover,
+  &:focus {
+    color: color(white);
+    background-color: darken(color(blue1), 5%);
+  }
+}
+
+.navbar {
+  background: color(yellow1);
+
+  & > .container .navbar-brand {
+    float: none;
+    display: block;
+    height: auto;
+    padding: 10px 0;
+    margin-left: 0;
+    line-height: 1;
+  }
+}
+
+.empty {
+  font-size: 24px;
+  padding: 100px 0;
+  text-align: center;
+}
+
+footer {
+  height: 50px;
+}

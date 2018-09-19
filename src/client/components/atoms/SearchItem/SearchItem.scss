@@ -1,0 +1,68 @@
+@import '../../../styles/variables.scss';
+
+.SearchItem {
+  & + .SearchItem {
+    padding: 16px 0 0;
+    margin: 16px 0 0;
+    border-top: 1px solid color(gray4);
+  }
+
+  .pic,
+  .content {
+    float: left;
+  }
+
+  .pic {
+    display: block;
+    width: 180px;
+    height: 180px;
+    margin: 0;
+    border-radius: 4px;
+    background-color: color(gray4);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .content {
+    padding: 16px;
+
+    a {
+      color: color(gray1);
+    }
+
+    span {
+      display: block;
+    }
+
+    .price {
+      line-height: 1;
+      font-size: 24px;
+      margin: 0 0 32px;
+
+      .freeShipping {
+        display: inline-block;
+        vertical-align: bottom;
+        margin: 0 0 3px 16px;
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      line-height: 1.2;
+      margin: 0;
+    }
+  }
+
+  .location {
+    float: right;
+    width: 180px;
+    padding: 42px 0 0;
+
+    p {
+      font-size: 12px;
+      color: color(gray2);
+    }
+  }
+}
+

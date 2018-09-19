@@ -1,0 +1,16 @@
+{
+  "api": {
+    "mercadolibre" : {
+      "host": "api.mercadolibre.com",
+      "port": "443",
+      "version": "",
+      "secure" : true,
+      "token": "",
+      "endpoints": {
+        "items": "/sites/MLA/search",
+        "item": "/items/:id",
+        "itemDescription": "/items/:id/description"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import '../../../styles/variables.scss';
+
+.SearchBox {
+  padding: 9px 0 0;
+  margin: 0 0 0 -15px;
+
+  .form-control {
+    height: 38px;
+    border: 0;
+    box-shadow: none;
+    font-size: 18px;
+  }
+
+  .input-group-btn {
+    .btn {
+      border: 0;
+      height: 38px;
+      background: color(gray4);
+
+      &:hover {
+        background: darken(color(gray4), 2%);
+      }
+    }
+  }
+}

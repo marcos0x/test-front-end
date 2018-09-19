@@ -1,0 +1,51 @@
+@import '../../../styles/variables.scss';
+
+.Detail {
+  .pic {
+    width: 680px;
+
+    img {
+      max-width: 100%;
+      vertical-align: top;
+    }
+  }
+
+  .description {
+    padding: 32px;
+
+    h3 {
+      font-size: 28px;
+      margin: 0 0 32px;
+      color: color(gray1);
+    }
+
+    p {
+      font-size: 16px;
+      color: color(gray2);
+      margin: 0;
+    }
+  }
+
+  .content {
+    padding: 16px 16px 0 0;
+
+    .condition {
+      font-size: 14px;
+      line-height: 1;
+      margin: 0 0 16px;
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.2;
+      margin: 0 0 32px;
+    }
+
+    .price {
+      font-size: 46px;
+      line-height: 1;
+      margin: 0 0 32px;
+    }
+  }
+}
