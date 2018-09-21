@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
-import util from '../../../lib/util';
-
 import * as persist from '../../../services/persist';
-import * as searchActions from '../../../data/search/actions';
 import * as routeHistoryActions from '../../../services/routeHistory/actions';
+import * as searchActions from '../../../data/search/actions';
+
+import util from '../../../lib/util';
+import searchIcon from '../../../assets/images/ic_Search.png';
 
 import './SearchBox.scss';
 
@@ -86,7 +87,7 @@ class SearchBox extends Component {
             />
             <InputGroup.Button>
               <Button id="searchSubmit" type="submit" bsStyle="default">
-                <img src={`${process.env.PUBLIC_URL}/images/ic_Search.png`} alt="" />
+                <img src={searchIcon} alt="" />
               </Button>
             </InputGroup.Button>
           </InputGroup>

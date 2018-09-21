@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import util from '../../../lib/util';
+import shippingIcon from '../../../assets/images/ic_shipping.png';
 
 import './SearchItem.scss';
 
@@ -23,7 +24,7 @@ export default class SearchItem extends Component {
             <span className="price">
               {util.number(`${this.props.price.amount}.${this.props.price.decimals}`).format('$ 0,0')}
               {this.props.free_shipping && (
-                <img src="/images/ic_shipping.png" alt="Envio gratis" className="freeShipping" />
+                <img src={shippingIcon} alt="Envio gratis" className="freeShipping" />
               )}
             </span>
             <span className="title">

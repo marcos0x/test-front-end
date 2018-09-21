@@ -4,6 +4,7 @@ import { Navbar, Row, Col } from 'react-bootstrap';
 
 import Routes from './routes';
 import SearchBox from './components/molecules/SearchBox';
+import logo from './assets/images/Logo_ML.png';
 
 class App extends Component {
   constructor(props) {
@@ -20,11 +21,7 @@ class App extends Component {
               <Col md={1} xs={2} mdOffset={1}>
                 <Navbar.Brand>
                   <Link to="/">
-                    <img
-                      id="logo"
-                      src={`${process.env.PUBLIC_URL}/images/Logo_ML.png`}
-                      alt="MercadoLibre"
-                    />
+                    <img id="logo" src={logo} alt="MercadoLibre" />
                   </Link>
                 </Navbar.Brand>
               </Col>

@@ -30,6 +30,7 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
     '--runInBand',
     '--bail',
     '--ci',
+    '--no-cache',
     '--env', 'jsdom'
   );
 }
