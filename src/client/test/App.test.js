@@ -62,7 +62,8 @@ describe('Store', () => {
 describe('API', () => {
   it('should get: search results, product detail', () => {
     const getSearchResults = () => new Promise((resolve, reject) => {
-      searchResultsApi.get({ q: 'iPhone' })
+      searchResultsApi
+        .get({ q: 'iPhone' })
         .then((response) => {
           console.debug('Search Results', { items: response.items.slice(0, 4) });
           const { items } = response;
@@ -87,7 +88,8 @@ describe('API', () => {
         return;
       }
 
-      detailApi.get(id)
+      detailApi
+        .get(id)
         .then((response) => {
           if (_.isEmpty(response)) {
             resolve(response);

@@ -6,7 +6,8 @@ const router = express.Router();
 // Product Detail
 
 router.get('/items/:id', (req, res) => {
-  api.getItem(req.params.id)
+  api
+    .getItem(req.params.id)
     .then(() => api.getItemDescription(req.params.id))
     .then(() => api.processItemResponse(res))
     .catch(error => res.status(400).send(error));
@@ -15,7 +16,8 @@ router.get('/items/:id', (req, res) => {
 // Search Results
 
 router.get('/items', (req, res) => {
-  api.getItems(req.query)
+  api
+    .getItems(req.query)
     .then(() => api.processItemsResponse(res))
     .catch(error => res.status(400).send(error));
 });

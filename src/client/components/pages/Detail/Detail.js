@@ -46,7 +46,8 @@ class Detail extends Component {
         <Breadcrumbs items={this.props.data.searchResults.categories} />
         <div className="main-content">
           <Loading visible={isLoading || !item.id} />
-          {(!isLoading && item.id) && (
+          {!isLoading
+            && item.id && (
             <Row>
               <Col md={9}>
                 <div className="pic">
@@ -54,30 +55,24 @@ class Detail extends Component {
                 </div>
                 <div id="description" className="description">
                   <h3>Descripción del producto</h3>
-                  {`${item.description}\n`
-                    .split('\n')
-                    .map((_item, i) => {
-                      const key = i;
-                      return (
-                        <p key={key}>
-                          {`${_item}`}
+                  {`${item.description}\n`.split('\n').map((_item, i) => {
+                    const key = i;
+                    return (
+                      <p key={key}>
+                        {`${_item}`}
                           &nbsp;
-                        </p>
-                      );
-                    })}
+                      </p>
+                    );
+                  })}
                 </div>
               </Col>
               <Col md={3}>
                 <div id="content" className="content">
-                  <p className="condition">
-                    {`${item.condition} - ${item.sold_quantity} vendidos`}
-                  </p>
+                  <p className="condition">{`${item.condition} - ${item.sold_quantity} vendidos`}</p>
                   <h2>{item.title}</h2>
-                  <p className="price">
-                    {util.number(`${item.price.amount}.${item.price.decimals}`).format('$ 0,0')}
-                  </p>
+                  <p className="price">{util.number(`${item.price.amount}.${item.price.decimals}`).format('$ 0,0')}</p>
                   <Button bsStyle="primary-2" bsSize="large" onClick={() => {}} block>
-                    Comprar
+                      Comprar
                   </Button>
                 </div>
               </Col>

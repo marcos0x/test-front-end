@@ -1,12 +1,12 @@
 /* eslint-disable */
-(function (window) {
+(function(window) {
   function defaults(target, obj) {
     for (let prop in obj) target[prop] = target[prop] || obj[prop];
   }
 
   function getQuery(queryParams) {
-    let arr = Object.keys(queryParams).map((k) => {
-      return k + '=' + encodeURIComponent(queryParams[k])
+    let arr = Object.keys(queryParams).map(k => {
+      return k + '=' + encodeURIComponent(queryParams[k]);
     });
     return `?${arr.join('&')}`;
   }
@@ -14,12 +14,11 @@
   function _fetch(method, url, opts, data, queryParams) {
     opts.method = method;
     opts.headers = opts.headers || {};
-    opts.responseAs = (opts.responseAs && ['json', 'text', 'response'].indexOf(opts.responseAs) >= 0)
-      ? opts.responseAs : 'json';
+    opts.responseAs = opts.responseAs && ['json', 'text', 'response'].indexOf(opts.responseAs) >= 0 ? opts.responseAs : 'json';
 
     defaults(opts.headers, {
       // Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
 
     if (queryParams) {
@@ -36,19 +35,16 @@
       delete opts.body;
     }
 
-    return httpRequest.fetch(url, opts)
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          if(opts.responseAs === "response")
-            return response
-          if (response.status === 204)
-            return null;
-          return response[opts.responseAs]();
-        }
-        var err = new Error(response.statusText)
-        err.response = response
-        throw err
-      });
+    return httpRequest.fetch(url, opts).then(response => {
+      if (response.status >= 200 && response.status < 300) {
+        if (opts.responseAs === 'response') return response;
+        if (response.status === 204) return null;
+        return response[opts.responseAs]();
+      }
+      var err = new Error(response.statusText);
+      err.response = response;
+      throw err;
+    });
   }
 
   function httpRequest(url, opts) {
@@ -62,19 +58,19 @@
       return httpRequest(u, o);
     };
 
-    _.get = (queryParams) => {
+    _.get = queryParams => {
       return _fetch('GET', url, opts, null, queryParams);
     };
 
-    _.post = (data) => {
+    _.post = data => {
       return _fetch('POST', url, opts, data);
     };
 
-    _.put = (data) => {
+    _.put = data => {
       return _fetch('PUT', url, opts, data);
     };
 
-    _.patch = (data) => {
+    _.patch = data => {
       return _fetch('PATCH', url, opts, data);
     };
 
@@ -92,9 +88,12 @@
   // Support CommonJS, AMD & browser
   if (typeof exports === 'object') {
     module.exports = httpRequest;
-  } else if (typeof define === 'function' && define.amd) { // eslint-disable-line
-    define(() => { return httpRequest }); // eslint-disable-line
+  } else if (typeof define === 'function' && define.amd) {
+    // eslint-disable-line
+    define(() => {
+      return httpRequest;
+    }); // eslint-disable-line
   } else {
     window.httpRequest = httpRequest;
   }
-}(typeof window !== 'undefined' ? window : undefined));
+})(typeof window !== 'undefined' ? window : undefined);

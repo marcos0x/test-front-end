@@ -33,8 +33,7 @@ class SearchBox extends Component {
       persist.getStore().dispatch(routeHistoryActions.push(location.pathname + location.search));
 
       if (location.pathname === '/' && this.props.data.search.query) {
-        this.props.actions.search.setQuery('')
-          .then(() => this.setState({ query: '' }));
+        this.props.actions.search.setQuery('').then(() => this.setState({ query: '' }));
       }
     });
 
@@ -78,13 +77,7 @@ class SearchBox extends Component {
       <div className="SearchBox">
         <form onSubmit={this.handleSubmit}>
           <InputGroup>
-            <FormControl
-              id="searchInput"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.query}
-              placeholder="Nunca dejes de buscar"
-            />
+            <FormControl id="searchInput" type="text" onChange={this.handleChange} value={this.state.query} placeholder="Nunca dejes de buscar" />
             <InputGroup.Button>
               <Button id="searchSubmit" type="submit" bsStyle="default">
                 <img src={searchIcon} alt="" />
@@ -97,15 +90,17 @@ class SearchBox extends Component {
   }
 }
 
-export default withRouter(connect(
-  state => ({
-    data: {
-      search: state.data.search,
-    },
-  }),
-  dispatch => ({
-    actions: {
-      search: bindActionCreators(searchActions, dispatch),
-    },
-  })
-)(SearchBox));
+export default withRouter(
+  connect(
+    state => ({
+      data: {
+        search: state.data.search,
+      },
+    }),
+    dispatch => ({
+      actions: {
+        search: bindActionCreators(searchActions, dispatch),
+      },
+    })
+  )(SearchBox)
+);
