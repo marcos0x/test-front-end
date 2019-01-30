@@ -24,17 +24,29 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.LOADING:
+    case actionTypes.GET:
+      console.log('detailGet');
+      return state;
+    case actionTypes.GET_REQUEST:
+      console.log('detailGetRequest');
       return {
         ...state,
         isLoading: true,
       };
-    case actionTypes.UPDATE:
+    case actionTypes.GET_SUCCESS:
+      console.log('detailGetSuccess');
       return {
         ...action.detail,
         isLoading: false,
       };
+    case actionTypes.GET_ERROR:
+      console.log('detailGetError');
+      return initialState;
     case actionTypes.EMPTY:
+      console.log('detailEmpty');
+      return state;
+    case actionTypes.EMPTY_SUCCESS:
+      console.log('detailEmptySuccess');
       return initialState;
     default:
       return state;

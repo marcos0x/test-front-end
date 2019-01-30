@@ -12,5 +12,7 @@ export const getPage = (page, array) => new Promise((resolve) => {
   const pageItems = items.slice((pageIndex * perPage), (page * perPage));
   const pageCount = Math.min((totalCount - (pageIndex * perPage)), perPage);
   const pagination = { page, perPage, pageCount, totalCount };
+  console.log('getPage', items, { pagination, items: pageItems });
+
   resolve({ pagination, items: pageItems });
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { call } from 'redux-saga/effects';
 import _ from 'lodash';
 
 import * as searchActions from '../../data/search/actions';
@@ -31,9 +31,11 @@ class Search extends Component {
   }
 
   tryFetch() {
-    this.props.actions.searchResults.get({ q: encodeURIComponent(this.props.data.search.query) })
-      .then(() => this.props.actions.searchPagination.getPage(1));
-    this.props.actions.detail.empty();
+    const sagas = [
+      () => this.props.detailEmpty(),
+      () => this.props.searchResultsGet({ q: encodeURIComponent(this.props.data.search.query) }),
+      () => this.props.searchPaginationGetPage(1)
+    ];
   }
 
   render() {
@@ -55,20 +57,21 @@ class Search extends Component {
   }
 }
 
-export default connect(
-  state => ({
+function mapStateToProps(state) {
+  return {
     data: {
       search: state.data.search,
       searchResults: state.data.searchResults,
       searchPagination: state.data.searchPagination,
-    },
-  }),
-  dispatch => ({
-    actions: {
-      search: bindActionCreators(searchActions, dispatch),
-      searchResults: bindActionCreators(searchResultsActions, dispatch),
-      searchPagination: bindActionCreators(searchPaginationActions, dispatch),
-      detail: bindActionCreators(detailActions, dispatch),
-    },
-  })
-)(Search);
+    }
+  };
+}
+
+const mapDispatchToProps = {
+  ...searchActions,
+  ...searchResultsActions,
+  ...searchPaginationActions,
+  ...detailActions
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

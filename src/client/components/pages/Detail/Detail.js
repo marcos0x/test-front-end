@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { Button, Row, Col } from 'react-bootstrap';
 import { bootstrapUtils } from 'react-bootstrap/lib/utils';
 
@@ -35,7 +35,7 @@ class Detail extends Component {
   }
 
   tryFetch() {
-    this.props.actions.detail.get(this.state.id);
+    this.props.detailGet(this.state.id);
   }
 
   render() {
@@ -84,16 +84,17 @@ class Detail extends Component {
   }
 }
 
-export default connect(
-  state => ({
+function mapStateToProps(state) {
+  return {
     data: {
       searchResults: state.data.searchResults,
       detail: state.data.detail,
     },
-  }),
-  dispatch => ({
-    actions: {
-      detail: bindActionCreators(detailActions, dispatch),
-    },
-  })
-)(Detail);
+  };
+}
+
+const mapDispatchToProps = {
+  ...detailActions,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

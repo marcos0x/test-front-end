@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
 import * as persist from '../../../services/persist';
@@ -33,7 +33,8 @@ class SearchBox extends Component {
       persist.getStore().dispatch(routeHistoryActions.push(location.pathname + location.search));
 
       if (location.pathname === '/' && this.props.data.search.query) {
-        this.props.actions.search.setQuery('').then(() => this.setState({ query: '' }));
+        this.props.actions.search.setQuery('');
+        this.setState({ query: '' });
       }
     });
 
@@ -42,12 +43,15 @@ class SearchBox extends Component {
   }
 
   componentDidMount() {
+    console.log({ state: this.state });
     persist.isHydrated().then((state) => {
+      console.log({ appState: state });
+      console.log({ pathname: this.props.location.pathname });
       if (this.props.location.pathname !== '/') {
         if (!this.state.query.length && !this.state.changed && state.data.search.query !== this.state.query) {
           this.setState(() => ({ query: state.data.search.query }));
         } else if (state.data.search.query !== this.state.query) {
-          this.props.actions.search.setQuery(this.state.query);
+          this.props.searchSetQuery(this.state.query);
         }
       }
     });
@@ -90,17 +94,16 @@ class SearchBox extends Component {
   }
 }
 
-export default withRouter(
-  connect(
-    state => ({
-      data: {
-        search: state.data.search,
-      },
-    }),
-    dispatch => ({
-      actions: {
-        search: bindActionCreators(searchActions, dispatch),
-      },
-    })
-  )(SearchBox)
-);
+function mapStateToProps(state) {
+  return {
+    data: {
+      search: state.data.search,
+    },
+  };
+}
+
+const mapDispatchToProps = {
+  ...searchActions,
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBox));

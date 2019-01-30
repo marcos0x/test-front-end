@@ -8,12 +8,17 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.LOADING:
+    case actionTypes.GET:
+      console.log('searchResultsGet');
+      return state;
+    case actionTypes.GET_REQUEST:
+      console.log('searchResultsGetRequest');
       return {
         ...state,
         isLoading: true,
       };
-    case actionTypes.UPDATE:
+    case actionTypes.GET_SUCCESS:
+      console.log('searchResultsGetSuccess');
       return {
         categories: [
           ...action.data.categories
@@ -23,12 +28,15 @@ export const reducer = (state = initialState, action) => {
         ],
         isLoading: false,
       };
+    case actionTypes.GET_ERROR:
+      console.log('searchResultsGetError');
+      return initialState;
     case actionTypes.EMPTY:
-      return {
-        categories: [],
-        items: [],
-        isLoading: false,
-      };
+      console.log('searchResultsEmpty');
+      return state;
+    case actionTypes.EMPTY_SUCCESS:
+      console.log('searchResultsEmptySuccess');
+      return initialState;
     default:
       return state;
   }
