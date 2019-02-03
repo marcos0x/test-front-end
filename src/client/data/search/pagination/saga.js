@@ -1,17 +1,18 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { searchPaginationGetPageRequest, searchPaginationGetPageSuccess, searchPaginationGetPageError } from './actions';
 import * as actionTypes from './actionTypes';
 import * as results from '../results';
 
 export function* getPage({ page, items }) {
   try {
-    yield put({ type: actionTypes.GET_PAGE_REQUEST, page });
+    yield put(searchPaginationGetPageRequest(page));
     const data = yield results.getPage(page, items);
-    yield put({ type: actionTypes.GET_PAGE_SUCCESS, data });
+    yield put(searchPaginationGetPageSuccess(data));
   } catch (error) {
-    yield put({ type: actionTypes.GET_PAGE_ERROR, error });
+    yield put(searchPaginationGetPageError(error));
   }
 }
 
-export function* watchSearchPaginationGetPage() {
+export function* sagaSearchPaginationGetPage() {
   yield takeEvery(actionTypes.GET_PAGE, getPage);
 }

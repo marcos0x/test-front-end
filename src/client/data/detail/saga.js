@@ -1,25 +1,26 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import * as api from './api';
+import { detailEmptySuccess, detailRequest, detailSuccess, detailError } from './actions';
 import * as actionTypes from './actionTypes';
 
 export function* empty() {
-  yield put({ type: actionTypes.EMPTY_SUCCESS });
+  yield put(detailEmptySuccess());
 }
 
 export function* get({ id, payload }) {
   try {
-    yield put({ type: actionTypes.GET_REQUEST });
+    yield put(detailRequest());
     const detail = yield call(api.get, id, payload);
-    yield put({ type: actionTypes.GET_SUCCESS, detail });
+    yield put(detailSuccess(detail));
   } catch (error) {
-    yield put({ type: actionTypes.GET_ERROR, error });
+    yield put(detailError(error));
   }
 }
 
-export function* watchDetailEmpty() {
+export function* sagaDetailEmpty() {
   yield takeEvery(actionTypes.EMPTY, empty);
 }
 
-export function* watchDetailGet() {
+export function* sagaDetailGet() {
   yield takeEvery(actionTypes.GET, get);
 }

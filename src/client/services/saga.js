@@ -1,17 +1,17 @@
 import { all, call, fork, spawn } from 'redux-saga/effects';
-import { watchSearchSetQuery } from '../data/search/saga';
-import { watchSearchResultsEmpty, watchSearchResultsGet } from '../data/search/results/saga';
-import { watchSearchPaginationGetPage } from '../data/search/pagination/saga';
-import { watchDetailEmpty, watchDetailGet } from '../data/detail/saga';
+import { sagaSearchSetQuery } from '../data/search/saga';
+import { sagaSearchResultsEmpty, sagaSearchResultsGet } from '../data/search/results/saga';
+import { sagaSearchPaginationGetPage } from '../data/search/pagination/saga';
+import { sagaDetailEmpty, sagaDetailGet } from '../data/detail/saga';
 
 export default function* saga() {
   const sagas = [
-    watchSearchSetQuery,
-    watchSearchResultsEmpty,
-    watchSearchResultsGet,
-    watchSearchPaginationGetPage,
-    watchDetailEmpty,
-    watchDetailGet,
+    sagaSearchSetQuery,
+    sagaSearchResultsEmpty,
+    sagaSearchResultsGet,
+    sagaSearchPaginationGetPage,
+    sagaDetailEmpty,
+    sagaDetailGet,
   ];
 
   yield all(sagas.map(item => spawn(function* a() {
