@@ -17,9 +17,9 @@ export function* get({ id, payload }) {
 }
 
 export function* watchDetailEmpty() {
-  yield takeLatest(actionTypes.EMPTY, empty);
+  yield takeEvery(actionTypes.EMPTY, empty);
 }
 
 export function* watchDetailGet() {
-  yield takeLatest(actionTypes.GET, get);
+  yield takeEvery(actionTypes.GET, get);
 }

@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { call } from 'redux-saga/effects';
 import _ from 'lodash';
 
-import * as searchActions from '../../data/search/actions';
 import * as searchResultsActions from '../../data/search/results/actions';
-import * as searchPaginationActions from '../../data/search/pagination/actions';
-import * as detailActions from '../../data/detail/actions';
 
 import Breadcrumbs from '../atoms/Breadcrumbs';
 import Loading from '../atoms/Loading';
@@ -31,11 +27,7 @@ class Search extends Component {
   }
 
   tryFetch() {
-    const sagas = [
-      () => this.props.detailEmpty(),
-      () => this.props.searchResultsGet({ q: encodeURIComponent(this.props.data.search.query) }),
-      () => this.props.searchPaginationGetPage(1)
-    ];
+    this.props.searchResults({ q: encodeURIComponent(this.props.data.search.query) });
   }
 
   render() {
@@ -68,10 +60,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  ...searchActions,
   ...searchResultsActions,
-  ...searchPaginationActions,
-  ...detailActions
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as actionTypes from './actionTypes';
 import * as results from '../results';
 
@@ -13,5 +13,5 @@ export function* getPage({ page, items }) {
 }
 
 export function* watchSearchPaginationGetPage() {
-  yield takeLatest(actionTypes.GET_PAGE, getPage);
+  yield takeEvery(actionTypes.GET_PAGE, getPage);
 }

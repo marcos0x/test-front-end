@@ -43,10 +43,9 @@ class SearchBox extends Component {
   }
 
   componentDidMount() {
-    console.log({ state: this.state });
     persist.isHydrated().then((state) => {
-      console.log({ appState: state });
-      console.log({ pathname: this.props.location.pathname });
+      // console.log({ appState: state });
+      // console.log({ pathname: this.props.location.pathname });
       if (this.props.location.pathname !== '/') {
         if (!this.state.query.length && !this.state.changed && state.data.search.query !== this.state.query) {
           this.setState(() => ({ query: state.data.search.query }));
@@ -69,7 +68,7 @@ class SearchBox extends Component {
     event.preventDefault();
 
     if (this.validateForm()) {
-      this.props.actions.search.setQuery(this.state.query);
+      this.props.searchSetQuery(this.state.query);
       this.props.history.push(`/items?search=${encodeURIComponent(this.state.query)}`);
     } else {
       this.props.history.push('/');

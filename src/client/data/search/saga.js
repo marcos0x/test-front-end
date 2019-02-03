@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as actionTypes from './actionTypes';
 
 export function* setQuery({ query }) {
@@ -6,5 +6,5 @@ export function* setQuery({ query }) {
 }
 
 export function* watchSearchSetQuery() {
-  yield takeLatest(actionTypes.SET, setQuery);
+  yield takeEvery(actionTypes.SET, setQuery);
 }

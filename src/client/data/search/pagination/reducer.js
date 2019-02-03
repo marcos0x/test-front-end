@@ -10,10 +10,10 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_PAGE:
-      console.log('searchPaginationGetPage');
+      // console.log('searchPaginationGetPage');
       return state;
     case actionTypes.GET_PAGE_REQUEST:
-      console.log('searchPaginationGetPageRequest');
+      // console.log('searchPaginationGetPageRequest');
       return {
         ...state,
         pagination: {
@@ -22,7 +22,7 @@ export const reducer = (state = initialState, action) => {
         }
       };
     case actionTypes.GET_PAGE_SUCCESS: {
-      console.log('searchPaginationGetPageSuccess');
+      // console.log('searchPaginationGetPageSuccess');
       const { items = [], pagination } = action.data;
       return {
         ...state,
@@ -34,7 +34,7 @@ export const reducer = (state = initialState, action) => {
       };
     }
     case actionTypes.GET_PAGE_ERROR:
-      console.log('searchPaginationGetPageError');
+      // console.log('searchPaginationGetPageError');
       return {
         ...state,
         pagination: {
