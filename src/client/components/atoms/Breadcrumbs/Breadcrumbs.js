@@ -5,6 +5,12 @@ import { Breadcrumb } from 'react-bootstrap';
 import './Breadcrumbs.scss';
 
 class Breadcrumbs extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   render() {
     if (!this.props.items.length) {
       return null;

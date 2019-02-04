@@ -33,7 +33,7 @@ class SearchBox extends Component {
       persist.getStore().dispatch(routeHistoryActions.push(location.pathname + location.search));
 
       if (location.pathname === '/' && this.props.data.search.query) {
-        this.props.actions.search.setQuery('');
+        this.props.searchSetQuery('');
         this.setState({ query: '' });
       }
     });
